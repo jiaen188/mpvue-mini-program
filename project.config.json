@@ -1,14 +1,14 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
-  "miniprogramRoot": "./dist/",
-  "qcloudRoot": "./server",
+	"miniprogramRoot": "./dist/",
+	"qcloudRoot": "./server",
 	"compileType": "miniprogram",
 	"appid": "wx8613c6d830b0f694",
 	"projectname": "mpvue-mini-program",
