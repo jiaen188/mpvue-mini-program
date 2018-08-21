@@ -1,14 +1,13 @@
 {
   "pages": [
-    "pages/index/main",
-    "pages/logs/main",
-    "pages/counter/main",
-    "pages/todolist/main"
+    "pages/books/main",
+    "pages/comments/main",
+    "pages/me/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "mpvue的示例",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#EA5149",
+    "navigationBarTitleText": "蜗牛图书",
+    "navigationBarTextStyle": "light"
   }
 }

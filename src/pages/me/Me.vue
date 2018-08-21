@@ -1,9 +1,10 @@
+<template>
+  <div>个人中心页面</div>
+</template>
 
 <script>
 export default {
-  created () {
-    console.log('小程序启动了')
-  }
+
 }
 </script>
 
