@@ -10,7 +10,7 @@
     "navigationBarTitleText": "蜗牛图书",
     "navigationBarTextStyle": "light"
   },
-  "tarBar": {
+  "tabBar": {
     "selectedColor": "#EA5149",
     "list": [
       {
