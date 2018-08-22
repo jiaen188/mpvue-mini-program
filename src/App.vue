@@ -18,8 +18,8 @@ export default {
         console.log(err)
       }
     }) */
-    console.log('设置dneglu ')
-    qcloud.setLoginUrl(config.loginUrl)
+
+    /* qcloud.setLoginUrl(config.loginUrl)
     qcloud.login({
       success: function (userinfo) {
         qcloud.request({
@@ -35,7 +35,7 @@ export default {
           }
         })
       }
-    });
+    }); */
 
     // const res = await get('/weapp/demo')
     // console.log(123, res)
