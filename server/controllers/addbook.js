@@ -10,6 +10,7 @@ module.exports = async (ctx) => {
     if (isbn && openid) {
         let url = 'https://api.douban.com/v2/book/isbn/' + isbn
         console.log(url)
+        // console.log(bookinfo)
         const bookinfo = await getJSON(url)
         const rate = bookinfo.rating.average
         const { title, image, alt, publisher, summary, price } = bookinfo
@@ -20,7 +21,6 @@ module.exports = async (ctx) => {
         console.log({
             rate, title, image, alt, publisher, summary, price, tags, author
         })
-        // console.log(bookinfo)
     }
 }
 
