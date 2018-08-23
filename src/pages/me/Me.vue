@@ -14,14 +14,11 @@
 
 <script>
 import YearProgress from '../../components/YearProgress.vue'
-import { showSuccess, showModal } from '../../util';
+import { showSuccess, showModal } from '../../util'
 import qcloud from 'wafer2-client-sdk'
 import config from '../../config.js'
 
 export default {
-  created () {
-    // this.userinfo = wx.getStorageSync('userinfo')
-  },
   data () {
     return {
       userinfo: {
@@ -40,7 +37,7 @@ export default {
     },
     getWxLogin () {
       const self = this
-      // 获取临时登录凭证  https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html#wxloginobject
+      // 获取临时登录凭证, 有一个唯一的code  https://developers.weixin.qq.com/miniprogram/dev/api/api-login.html#wxloginobject
       wx.login({
         success: function (loginResult) {
           console.log('loginResult', loginResult)
@@ -53,13 +50,13 @@ export default {
                 login: true,
                 success (userRes) {
                   showSuccess('登录成功')
-                  console.log('登录成功')
+                  console.log('登录成功', userRes)
                   wx.setStorageSync('userinfo', userRes.data.data)
                   self.userinfo = userRes.data.data
                 }
               })
             },
-            fail(error) {
+            fail (error) {
               showModal('登录失败', error)
             }
           })
@@ -70,7 +67,7 @@ export default {
       const self = this
       // 当前的用户设置 https://developers.weixin.qq.com/miniprogram/dev/api/setting.html#wxgetsettingobject
       wx.getSetting({
-        success: function(res) {
+        success: function (res) {
           console.log('当前的用户设置', res)
           // 用户的授权结果 https://developers.weixin.qq.com/miniprogram/dev/api/signature.html#wxchecksessionobject
           if (res.authSetting['scope.userInfo']) {
@@ -89,12 +86,18 @@ export default {
           } else {
             showModal('用户未授权', e.mp.detail.errMsg)
           }
-        },
+        }
       })
     }
   },
   components: {
     YearProgress
+  },
+  onShow () {
+    let userinfo = wx.getStorageSync('userinfo')
+    if (userinfo) {
+      this.userinfo = userinfo
+    }
   }
 }
 </script>

@@ -1,42 +1,7 @@
 
 <script>
-import { get } from './util'
-import qcloud from 'wafer2-client-sdk'
-import config from './config.js'
-
 export default {
   async created () {
-    // 使用 login 参数之前，需要设置登录地址
-    /* qcloud.setLoginUrl(config.loginUrl)
-    qcloud.request({
-      login: true,
-      url: `${config}/weapp/user`,
-      success: function (response) {
-        console.log(response)
-      },
-      fail: function (err) {
-        console.log(err)
-      }
-    }) */
-
-    /* qcloud.setLoginUrl(config.loginUrl)
-    qcloud.login({
-      success: function (userinfo) {
-        qcloud.request({
-          url: config.userUrl,
-          login: true,
-          success (userRes) {
-            showSuccess('登录成功')
-            wx.setStorageSync('userinfo', userRes.data.data)
-            self.userinfo = userRes.data.data
-          },
-          fail: function (err) {
-            console.log('登录失败', err)
-          }
-        })
-      }
-    }); */
-
     // const res = await get('/weapp/demo')
     // console.log(123, res)
     /* wx.request({

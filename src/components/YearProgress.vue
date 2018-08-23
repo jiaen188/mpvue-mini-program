@@ -8,17 +8,17 @@
 <script>
 export default {
   methods: {
-    isLeapYeader() {
+    isLeapYeader () {
       const year = new Date().getFullYear()
       if (year % 400 === 0) {
         return true
-      } else if (year % 4 == 0 && year % 100 !== 0) {
+      } else if (year % 4 === 0 && year % 100 !== 0) {
         return true
       } else {
         return false
       }
     },
-    getDayOfYear() {
+    getDayOfYear () {
       return this.isLeapYeader() ? 366 : 365
     }
   },
