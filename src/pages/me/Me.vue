@@ -33,14 +33,11 @@ export default {
         isbn,
         openid: this.userinfo.openId
       })
-      if (res.code === 0 && res.data.title) {
-        showModal('添加成功', `${res.data.title}添加成功`)
-      }
+      showModal('添加成功', `${res.title}添加成功`)
     },
     scanBook () {
       wx.scanCode({
         success: (res) => {
-          console.log(res)
           if (res.result) {
             this.addBook(res.result)
           }
