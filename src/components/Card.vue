@@ -4,9 +4,9 @@
       <img :src="book.image" mode="aspectFit" class="image">
     </div>
     <div class="detail">
-      <div class="row">
+      <div class="row text-primary">
         <div class="right">
-          {{book.rate}}
+          {{book.rate}} <rate :value="book.rate"></rate>
         </div>
         <div class="left">
           {{book.title}}
@@ -33,8 +33,13 @@
 </template>
 
 <script>
+import Rate from './Rate.vue'
+
 export default {
-  props: ['book']
+  props: ['book'],
+  components: {
+    Rate
+  }
 }
 </script>
 
