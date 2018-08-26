@@ -13,7 +13,9 @@ module.exports = async (ctx) => {
         user_info: {
             name: info.nickName,
             image: info.avatarUrl
-        }
+        },
+        tags: detail.tags.split(','),
+        summary: detail.summary.split('\n')
     })
 
     await mysql('books')

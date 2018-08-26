@@ -26,6 +26,12 @@
       {{info.publisher}}
       <div class="right">{{info.price}}</div>
     </div>
+    <div class="tags">
+      <div class="badge" v-for="tag in info.tags" :key="tag">{{tag}}</div>
+    </div>
+    <div class="summary">
+      <p v-for="(sum, i) in info.summary" :key="i">{{sum}}</p>
+    </div>
   </div>
 </template>
 
@@ -89,6 +95,22 @@ export default {
       height: 20px;
       border-radius: 50%;
       vertical-align: middle;
+    }
+  }
+  .badge {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #EA5149;
+    color: #EA5149;
+  }
+  .summary {
+    margin-top: 10px;
+    padding: 0 15px;
+    p {
+      text-indent: 2em;
+      font-size: 14px;
     }
   }
 }
