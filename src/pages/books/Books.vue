@@ -1,5 +1,6 @@
 <template>
   <div>
+    <top-swiper :tops="tops"></top-swiper>
     <card v-for="book in books" :key="book.id" :book="book"></card>
     <p class="text-footer" v-if="!more">
       没有更多数据
@@ -10,6 +11,7 @@
 <script>
 import { get } from '../../util.js'
 import Card from '../../components/Card'
+import TopSwiper from '../../components/TopSwiper'
 
 export default {
   data () {
@@ -63,7 +65,8 @@ export default {
     }
   },
   components: {
-    Card
+    Card,
+    TopSwiper
   }
 }
 </script>
