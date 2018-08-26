@@ -1,6 +1,5 @@
 <template>
   <div>
-    图书id：{{bookid}}
     <book-info :info="info"></book-info>
   </div>
 </template>
