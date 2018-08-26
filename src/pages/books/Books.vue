@@ -16,14 +16,17 @@ export default {
     return {
       books: [],
       page: 0,
-      more: true
+      more: true,
+      tops: []
     }
   },
   mounted() {
     this.getList(true)
+    this.getTop()
   },
   onPullDownRefresh () {
     this.getList(true)
+    this.getTop()
   },
   onReachBottom() {
     if (!this.more) {
@@ -34,7 +37,7 @@ export default {
     this.getList()
   },
   methods: {
-    async getList (init) {
+    async getList (init) { // 获取书籍books列表
       if (init) {
         this.page = 0
         this.more = true
@@ -53,6 +56,10 @@ export default {
       }
 
       wx.hideNavigationBarLoading()
+    },
+    async getTop () { // 获取访问最多的那几本图书
+      const tops = await get('/weapp/top')
+      this.tops = tops.list
     }
   },
   components: {
