@@ -3,6 +3,7 @@
     <div class="thumb">
       <img class="back" mode="aspectFill" :src="info.image">
       <img class="img" :src="info.image" mode="aspectFit">
+
       <div class="info">
         <div class="title">
           {{info.title}}
@@ -12,17 +13,41 @@
         </div>
       </div>
     </div>
+
+    <div class="detail">
+      <img class="avatar" mode="aspectFit" :src="userInfo.image">
+      {{userInfo.name}}
+      <div class="right text-primary">
+        {{info.rate}}分
+        <rate :value="info.rate"></rate>
+      </div>
+    </div>
+    <div class="detail">
+      {{info.publisher}}
+      <div class="right">{{info.price}}</div>
+    </div>
   </div>
 </template>
 
 <script>
+import Rate from './Rate'
+
 export default {
-  props: ['info']
+  props: ['info'],
+  computed: {
+    userInfo () {
+      return this.info.user_info || {}
+    }
+  },
+  components: {
+    Rate
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .bookinfo {
+  font-size: 14px;
   .thumb {
     width: 750rpx;
     height: 500rpx;
@@ -52,6 +77,18 @@ export default {
       .author {
         font-size: 14px;
       }
+    }
+  }
+  .right {
+    float: right;
+  }
+  .detail {
+    padding: 5px 10px;
+    .avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      vertical-align: middle;
     }
   }
 }
