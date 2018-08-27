@@ -7,7 +7,7 @@
     <div class="location">
       地理位置：
       <switch color="#EA5149" :checked="location" @change="getGeo"></switch>
-      <span class="text-primary">{{locaton}}</span>
+      <span class="text-primary">{{location}}</span>
     </div>
     <div class="phone">
       手机型号：
@@ -27,7 +27,7 @@ export default {
       bookid: '',
       info: {},
       comment: '',
-      locaton: '',
+      location: '',
       phone: ''
     }
   },
@@ -45,8 +45,33 @@ export default {
         title: info.title
       })
     },
-    getGeo () {
+    getGeo (e) {
+      const ak = 'rIt7RmMdNY8Lgw5VbsPMVSi81jYmGf0G'
+      let url = 'http://api.map.baidu.com/geocoder/v2/'
 
+      if (e.target.value) {
+        wx.getLocation({
+          success: res => {
+            wx.request({
+              url,
+              data: {
+                ak,
+                location: `${res.latitude}, ${res.longitude}`,
+                output: 'json'
+              },
+              success: res => {
+                if (res.data.status === 0) {
+                  this.location = res.data.result.addressComponent.city
+                } else {
+                  this.location = '未知地点'
+                }
+              }
+            })
+          }
+        })
+      } else {
+        this.location = ''
+      }
     },
     getPhone (e) {
       if (e.target.value) {
