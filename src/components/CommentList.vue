@@ -1,6 +1,6 @@
 <template>
   <div class="comment-list">
-    <div class="page-title">
+    <div class="page-title" v-if="comments.length">
       我的评论
     </div>
     <div class="comment"

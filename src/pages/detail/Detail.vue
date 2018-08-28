@@ -2,7 +2,7 @@
   <div>
     <book-info :info="info"></book-info>
     <comment-list :comments="comments"></comment-list>
-    <div class="comment">
+    <div class="comment" v-if="showAdd">
       <textarea v-model='comment'
         class='textarea'
         :maxlength='100'
@@ -21,6 +21,10 @@
         评论
       </button>
     </div>
+    <div v-else class="text-footer">
+      未登录或者已评论
+    </div>
+    <button open-type="share" class="btn">转发给好友</button>
   </div>
 </template>
 
@@ -41,6 +45,34 @@ export default {
       phone: ''
     }
   },
+  computed: {
+    showAdd () {
+      // 没有登录
+      if (!this.userinfo.openId) {
+        return false
+      }
+      // 评论里面查到有自己的openid
+      if (this.comments.filter(v => v.openid === this.userinfo.openId).length) {
+        return false
+      }
+      return true
+    }
+  },
+  onShareAppMessage (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: this.info.title,
+      path: '/page/detail?id=' + this.bookid
+    }
+  },
+  created() {
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+  },
   mounted () {
     // 1. 如何获取小程序在 page onLoad 时候传递的 options http://mpvue.com/mpvue/#_18
     this.bookid = this.$root.$mp.query.id
@@ -54,7 +86,6 @@ export default {
   methods: {
     async getDetail () {
       const info = await get('/weapp/bookdetail', {id: this.bookid})
-      console.log(info)
       this.info = info
       wx.setNavigationBarTitle({
         title: info.title
@@ -112,14 +143,14 @@ export default {
       try {
         await post('/weapp/addcomment', data)
         this.comment = ''
+        this.getComments()
       } catch (error) {
         showModal('失败', e.msg)
       }
     },
     async getComments () {
       const comments = await get('/weapp/commentlist', {bookid: this.bookid})
-      this.comments = comments.list
-      console.log(this.comments)
+      this.comments = comments.list || []
     }
   },
   components: {
