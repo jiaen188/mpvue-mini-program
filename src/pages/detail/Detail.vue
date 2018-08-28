@@ -94,7 +94,7 @@ export default {
       }
     },
     async addComment () {
-      if (this.comment) {
+      if (!this.comment) {
         return
       }
       // 评论内容 手机型号 地理位置 图书id 用户的openid
