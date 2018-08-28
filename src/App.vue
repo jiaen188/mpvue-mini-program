@@ -23,6 +23,15 @@ export default {
 .text-primary {
   color: #EA5149;
 }
+.page-title {
+  padding-left: 20px;
+  background: #eee;
+  line-height: 40px;
+  font-size: 14px;
+}
+.right {
+  float: right;
+}
 .btn {
   color: white;
   background-color: #EA5A49;

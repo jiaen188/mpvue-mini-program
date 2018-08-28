@@ -1,6 +1,7 @@
 <template>
   <div>
     <book-info :info="info"></book-info>
+    <comment-list :comments="comments"></comment-list>
     <div class="comment">
       <textarea v-model='comment'
         class='textarea'
@@ -26,6 +27,7 @@
 <script>
 import { get, post, showModal } from '../../util.js'
 import BookInfo from '../../components/BookInfo'
+import CommentList from '../../components/CommentList'
 
 export default {
   data () {
@@ -116,11 +118,13 @@ export default {
     },
     async getComments () {
       const comments = await get('/weapp/commentlist', {bookid: this.bookid})
-      this.comments = comments
+      this.comments = comments.list
+      console.log(this.comments)
     }
   },
   components: {
-    BookInfo
+    BookInfo,
+    CommentList
   }
 }
 </script>
