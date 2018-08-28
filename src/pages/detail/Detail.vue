@@ -31,6 +31,7 @@ export default {
   data () {
     return {
       userinfo: {},
+      comments: [],
       bookid: '',
       info: {},
       comment: '',
@@ -42,6 +43,7 @@ export default {
     // 1. 如何获取小程序在 page onLoad 时候传递的 options http://mpvue.com/mpvue/#_18
     this.bookid = this.$root.$mp.query.id
     this.getDetail()
+    this.getComments()
     const userinfo = wx.getStorageSync('userinfo')
     if (userinfo) {
       this.userinfo = userinfo
@@ -111,6 +113,10 @@ export default {
       } catch (error) {
         showModal('失败', e.msg)
       }
+    },
+    async getComments () {
+      const comments = await get('/weapp/commentlist', {bookid: this.bookid})
+      this.comments = comments
     }
   },
   components: {
