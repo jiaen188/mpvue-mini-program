@@ -13,12 +13,12 @@ export default {
   props: {
     value: {
       type: [Number, String],
-      default:'0'
+      default: '0'
     }
   },
   computed: {
-    style (){
-      return `width:${this.value*10}%`
+    style () {
+      return `width:${this.value * 10}%`
     }
   }
 }

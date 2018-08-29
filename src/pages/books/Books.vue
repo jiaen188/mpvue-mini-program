@@ -22,7 +22,7 @@ export default {
       tops: []
     }
   },
-  mounted() {
+  mounted () {
     this.getList(true)
     this.getTop()
   },
@@ -30,7 +30,7 @@ export default {
     this.getList(true)
     this.getTop()
   },
-  onReachBottom() {
+  onReachBottom () {
     if (!this.more) {
       // 没有更多了
       return false

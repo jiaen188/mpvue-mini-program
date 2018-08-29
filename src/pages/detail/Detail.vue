@@ -68,7 +68,7 @@ export default {
       path: '/page/detail?id=' + this.bookid
     }
   },
-  created() {
+  created () {
     wx.showShareMenu({
       withShareTicket: true
     })
@@ -144,7 +144,7 @@ export default {
         await post('/weapp/addcomment', data)
         this.comment = ''
         this.getComments()
-      } catch (error) {
+      } catch (e) {
         showModal('失败', e.msg)
       }
     },
