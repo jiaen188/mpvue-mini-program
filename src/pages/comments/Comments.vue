@@ -61,7 +61,6 @@ export default {
         openid: this.userinfo.openId
       })
       this.books = books.list
-      console.log(this.books)
     }
   },
   components: {

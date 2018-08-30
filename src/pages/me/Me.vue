@@ -59,7 +59,7 @@ export default {
                 login: true,
                 success (userRes) {
                   showSuccess('登录成功')
-                  console.log('登录成功', userRes)
+                  console.log('登录成功,获取用户信息', userRes)
                   wx.setStorageSync('userinfo', userRes.data.data)
                   self.userinfo = userRes.data.data
                 }
@@ -83,8 +83,15 @@ export default {
             // 检查用户登录是否过期
             wx.checkSession({
               success: function () {
-                showSuccess('登录成功')
-                console.log('登录成功')
+                const userinfo = wx.getStorageSync('userinfo')
+                if (userinfo) {
+                  self.userinfo = userinfo
+                  showSuccess('登录成功')
+                  console.log('登录成功')
+                } else {
+                  self.getWxLogin()
+                }
+                console.log('未过期中的userinfo', userinfo)
               },
               fail: function () {
                 // 过期了，需要重新登录，先清除登录状态

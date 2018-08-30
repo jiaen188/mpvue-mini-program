@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top-swiper :tops="tops"></top-swiper>
+    <top-swiper v-if="tops.length" :tops="tops"></top-swiper>
     <card v-for="book in books" :key="book.id" :book="book"></card>
     <p class="text-footer" v-if="!more">
       没有更多数据
@@ -56,7 +56,6 @@ export default {
         // 下拉刷新， 不能直接覆盖 books 而是累加
         this.books = this.books.concat(books.list)
       }
-
       wx.hideNavigationBarLoading()
     },
     async getTop () { // 获取访问最多的那几本图书
